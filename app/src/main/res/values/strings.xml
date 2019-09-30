@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MarvelWithKontacts</string>
+    <string name="withContacts">with Kontacts</string>
+    <string name="permission_required">Until you grant the permission, contacts can not be displayed</string>
+</resources>
