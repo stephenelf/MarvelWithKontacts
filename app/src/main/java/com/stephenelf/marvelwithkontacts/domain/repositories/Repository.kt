@@ -1,12 +1,12 @@
-package com.stephenelf.marvelwithkontacts.repositories
+package com.stephenelf.marvelwithkontacts.domain.repositories
 
 import android.content.Context
 import android.net.Uri
 import com.orhanobut.logger.Logger
-import com.stephenelf.marvelwithkontacts.database.Character
-import com.stephenelf.marvelwithkontacts.net.response.CharacterContainer
-import com.stephenelf.marvelwithkontacts.net.response.CharacterResponse
-import com.stephenelf.marvelwithkontacts.util.People
+import com.stephenelf.marvelwithkontacts.data.People
+import com.stephenelf.marvelwithkontacts.data.database.Character
+import com.stephenelf.marvelwithkontacts.data.net.response.CharacterContainer
+import com.stephenelf.marvelwithkontacts.data.net.response.CharacterResponse
 import io.reactivex.Maybe
 import io.reactivex.MaybeSource
 import io.reactivex.Single
@@ -52,16 +52,22 @@ class  Repository (val context: Context,private val localRepository: LocalReposi
         Logger.d("merging characters:"+localCharacters.isEmpty())
 
         localCharacters.forEach { character ->
-            people.add(People(character.name, Uri.parse(character.thumbnail.toString()),""))}
+            people.add(
+                People(
+                    character.name,
+                    Uri.parse(character.thumbnail.toString()),
+                    ""
+                )
+            )}
 
 
         contacts.forEach { contact ->
              people.add(
-               People(
-                contact.displayName?:"no name",
-                contact.thumbnail?:Uri.parse(""),
-                phone = if (contact.phoneNumbers.size > 0) contact.phoneNumbers.iterator().next() else null
-            )
+                 People(
+                     contact.displayName ?: "no name",
+                     contact.thumbnail ?: Uri.parse(""),
+                     phone = if (contact.phoneNumbers.size > 0) contact.phoneNumbers.iterator().next() else null
+                 )
         )}
 
 

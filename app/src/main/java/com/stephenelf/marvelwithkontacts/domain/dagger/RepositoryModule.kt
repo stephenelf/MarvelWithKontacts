@@ -1,12 +1,12 @@
-package com.stephenelf.marvelwithkontacts.dagger
+package com.stephenelf.marvelwithkontacts.domain.dagger
 
 import android.app.Application
-import com.stephenelf.marvelwithkontacts.database.MyDatabase
-import com.stephenelf.marvelwithkontacts.net.MarvelAPI
-import com.stephenelf.marvelwithkontacts.repositories.ContactsRepository
-import com.stephenelf.marvelwithkontacts.repositories.LocalRepository
-import com.stephenelf.marvelwithkontacts.repositories.RemoteRepository
-import com.stephenelf.marvelwithkontacts.repositories.Repository
+import com.stephenelf.marvelwithkontacts.data.database.MyDatabase
+import com.stephenelf.marvelwithkontacts.data.net.MarvelAPI
+import com.stephenelf.marvelwithkontacts.domain.repositories.ContactsRepository
+import com.stephenelf.marvelwithkontacts.domain.repositories.LocalRepository
+import com.stephenelf.marvelwithkontacts.domain.repositories.RemoteRepository
+import com.stephenelf.marvelwithkontacts.domain.repositories.Repository
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

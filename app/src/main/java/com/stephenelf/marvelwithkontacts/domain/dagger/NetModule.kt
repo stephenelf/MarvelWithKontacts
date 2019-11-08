@@ -1,10 +1,10 @@
-package com.stephenelf.marvelwithkontacts.dagger
+package com.stephenelf.marvelwithkontacts.domain.dagger
 
 import android.app.Application
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.stephenelf.marvelwithkontacts.net.MarvelAPI
+import com.stephenelf.marvelwithkontacts.data.net.MarvelAPI
 import dagger.Module
 import dagger.Provides
 import okhttp3.Cache

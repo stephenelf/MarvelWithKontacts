@@ -1,4 +1,4 @@
-package com.stephenelf.marvelwithkontacts.repositories
+package com.stephenelf.marvelwithkontacts.domain.repositories
 
 import android.content.Context
 import io.reactivex.Single

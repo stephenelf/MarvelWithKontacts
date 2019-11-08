@@ -1,4 +1,4 @@
-package com.stephenelf.marvelwithkontacts.util
+package com.stephenelf.marvelwithkontacts.data
 
 import android.net.Uri
 

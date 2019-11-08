@@ -1,4 +1,4 @@
-package com.stephenelf.marvelwithkontacts.net.response
+package com.stephenelf.marvelwithkontacts.data.net.response
 
 data class ThumbnailResponse(val path:String, val extension:String) {
 

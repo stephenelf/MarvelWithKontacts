@@ -1,4 +1,4 @@
-package com.stephenelf.marvelwithkontacts.dagger
+package com.stephenelf.marvelwithkontacts.domain.dagger
 
 import android.app.Application
 import android.content.SharedPreferences

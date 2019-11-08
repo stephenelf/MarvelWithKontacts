@@ -3,7 +3,7 @@ package com.stephenelf.marvelwithkontacts
 import android.net.Uri
 import androidx.test.InstrumentationRegistry
 import androidx.test.runner.AndroidJUnit4
-import com.stephenelf.marvelwithkontacts.util.People
+import com.stephenelf.marvelwithkontacts.data.People
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Before
@@ -22,7 +22,11 @@ class PeopleInstrumentedTest {
 
     @Before
     fun createPeople() {
-        people= People("Test user", Uri.parse("http://www.google.com"),null)
+        people= People(
+            "Test user",
+            Uri.parse("http://www.google.com"),
+            null
+        )
     }
 
     @Test

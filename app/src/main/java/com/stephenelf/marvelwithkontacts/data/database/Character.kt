@@ -1,9 +1,9 @@
-package com.stephenelf.marvelwithkontacts.database
+package com.stephenelf.marvelwithkontacts.data.database
 
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.stephenelf.marvelwithkontacts.net.response.ThumbnailResponse
+import com.stephenelf.marvelwithkontacts.data.net.response.ThumbnailResponse
 
 
 @Entity

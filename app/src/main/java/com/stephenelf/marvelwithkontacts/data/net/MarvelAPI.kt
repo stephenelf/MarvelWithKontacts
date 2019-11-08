@@ -1,6 +1,6 @@
-package com.stephenelf.marvelwithkontacts.net
+package com.stephenelf.marvelwithkontacts.data.net
 
-import com.stephenelf.marvelwithkontacts.net.response.CharacterResponse
+import com.stephenelf.marvelwithkontacts.data.net.response.CharacterResponse
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query

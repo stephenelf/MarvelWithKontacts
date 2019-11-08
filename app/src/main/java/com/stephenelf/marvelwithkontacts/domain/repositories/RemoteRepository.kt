@@ -1,9 +1,9 @@
-package com.stephenelf.marvelwithkontacts.repositories
+package com.stephenelf.marvelwithkontacts.domain.repositories
 
 import android.content.Context
 import com.stephenelf.marvelwithkontacts.R
-import com.stephenelf.marvelwithkontacts.net.MarvelAPI
-import com.stephenelf.marvelwithkontacts.net.response.CharacterResponse
+import com.stephenelf.marvelwithkontacts.data.net.MarvelAPI
+import com.stephenelf.marvelwithkontacts.data.net.response.CharacterResponse
 import io.reactivex.Single
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException

@@ -3,7 +3,7 @@ package com.stephenelf.marvelwithkontacts
 import android.app.Application
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
-import com.stephenelf.marvelwithkontacts.dagger.*
+import com.stephenelf.marvelwithkontacts.domain.dagger.*
 
 
 

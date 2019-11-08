@@ -1,7 +1,7 @@
-package com.stephenelf.marvelwithkontacts.database
+package com.stephenelf.marvelwithkontacts.data.database
 
 import androidx.room.TypeConverter
-import com.stephenelf.marvelwithkontacts.net.response.ThumbnailResponse
+import com.stephenelf.marvelwithkontacts.data.net.response.ThumbnailResponse
 
 class Converters {
     @TypeConverter

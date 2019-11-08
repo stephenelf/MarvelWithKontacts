@@ -1,4 +1,4 @@
-package com.stephenelf.marvelwithkontacts.database.dao
+package com.stephenelf.marvelwithkontacts.data.database.dao
 
 import androidx.room.Delete
 import androidx.room.Insert

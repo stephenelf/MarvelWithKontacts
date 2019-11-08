@@ -1,4 +1,4 @@
-package com.stephenelf.marvelwithkontacts
+package com.stephenelf.marvelwithkontacts.ui
 
 import android.Manifest
 import android.animation.Animator
@@ -25,9 +25,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
 import com.orhanobut.logger.Logger
-import com.stephenelf.marvelwithkontacts.repositories.Repository
+import com.stephenelf.marvelwithkontacts.MyApplication
+import com.stephenelf.marvelwithkontacts.R
+import com.stephenelf.marvelwithkontacts.data.People
+import com.stephenelf.marvelwithkontacts.domain.repositories.Repository
 import com.stephenelf.marvelwithkontacts.util.GlideApp
-import com.stephenelf.marvelwithkontacts.util.People
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
@@ -37,6 +39,9 @@ import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
+    @Inject
+    lateinit var repository: Repository
+
     private lateinit var peopleAdapter: PeopleAdapter;
 
     companion object {
@@ -44,8 +49,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    @Inject
-    lateinit var repository: Repository
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -96,7 +100,8 @@ class MainActivity : AppCompatActivity() {
                 // Permission is granted
                 fillData()
             } else {
-                Toast.makeText(this, R.string.permission_required, Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,
+                    R.string.permission_required, Toast.LENGTH_SHORT).show()
             }
         }
     }

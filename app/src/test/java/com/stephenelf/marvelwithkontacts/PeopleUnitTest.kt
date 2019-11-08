@@ -1,6 +1,6 @@
 package com.stephenelf.marvelwithkontacts
 
-import com.stephenelf.marvelwithkontacts.util.People
+import com.stephenelf.marvelwithkontacts.data.People
 import org.junit.Assert.assertNull
 import org.junit.Test
 
@@ -12,7 +12,7 @@ import org.junit.Test
 class PeopleUnitTest {
     @Test
     fun people_isNull() {
-       val people:People?=null
+       val people: People?=null
 
         assertNull(people)
     }

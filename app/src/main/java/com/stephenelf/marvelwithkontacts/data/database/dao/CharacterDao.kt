@@ -1,8 +1,8 @@
-package com.stephenelf.marvelwithkontacts.database.dao
+package com.stephenelf.marvelwithkontacts.data.database.dao
 
 import androidx.room.Dao
 import androidx.room.Query
-import com.stephenelf.marvelwithkontacts.database.Character
+import com.stephenelf.marvelwithkontacts.data.database.Character
 import io.reactivex.Maybe
 
 @Dao

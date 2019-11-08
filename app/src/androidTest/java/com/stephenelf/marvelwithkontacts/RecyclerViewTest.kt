@@ -11,6 +11,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import androidx.test.rule.ActivityTestRule
+import com.stephenelf.marvelwithkontacts.ui.MainActivity
 
 @RunWith(AndroidJUnit4::class)
 @LargeTest

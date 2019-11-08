@@ -1,7 +1,7 @@
-package com.stephenelf.marvelwithkontacts.repositories
+package com.stephenelf.marvelwithkontacts.domain.repositories
 
-import com.stephenelf.marvelwithkontacts.database.Character
-import com.stephenelf.marvelwithkontacts.database.MyDatabase
+import com.stephenelf.marvelwithkontacts.data.database.Character
+import com.stephenelf.marvelwithkontacts.data.database.MyDatabase
 import io.reactivex.Completable
 import io.reactivex.Maybe
 import io.reactivex.android.schedulers.AndroidSchedulers
