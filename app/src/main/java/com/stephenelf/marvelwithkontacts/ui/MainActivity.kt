@@ -16,6 +16,7 @@ import android.view.animation.DecelerateInterpolator
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.dynamicanimation.animation.DynamicAnimation
 import androidx.dynamicanimation.animation.SpringAnimation
@@ -28,27 +29,24 @@ import com.orhanobut.logger.Logger
 import com.stephenelf.marvelwithkontacts.MyApplication
 import com.stephenelf.marvelwithkontacts.R
 import com.stephenelf.marvelwithkontacts.data.People
-import com.stephenelf.marvelwithkontacts.domain.repositories.Repository
 import com.stephenelf.marvelwithkontacts.util.GlideApp
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
-import javax.inject.Inject
+
 
 class MainActivity : AppCompatActivity() {
 
-    @Inject
-    lateinit var repository: Repository
-
     private lateinit var peopleAdapter: PeopleAdapter;
+
+    private val contactsViewModel: ContactsViewModel by viewModels()
 
     companion object {
         internal var PERMISSIONS_REQUEST_READ_CONTACTS = 1
 
     }
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -78,7 +76,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun fillData() {
-        repository.getPeople().subscribeOn(Schedulers.io())
+
+        contactsViewModel.people.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : DisposableSingleObserver<List<People>>() {
                 override fun onSuccess(people: List<People>) {
@@ -100,8 +99,10 @@ class MainActivity : AppCompatActivity() {
                 // Permission is granted
                 fillData()
             } else {
-                Toast.makeText(this,
-                    R.string.permission_required, Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this,
+                    R.string.permission_required, Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }
@@ -198,7 +199,7 @@ class MainActivity : AppCompatActivity() {
         fun onBind(thumbnail: Uri, text: String, isCheched: Boolean, phone: String?) {
             people_name?.text = text
 
-            Logger.d("url="+thumbnail.toString())
+            Logger.d("url=" + thumbnail.toString())
             people_icon?.let {
                 GlideApp.with(itemView.context)
                     .load(thumbnail)
