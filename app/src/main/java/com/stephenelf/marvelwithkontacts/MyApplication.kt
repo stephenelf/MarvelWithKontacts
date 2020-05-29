@@ -6,8 +6,6 @@ import com.orhanobut.logger.Logger
 import com.stephenelf.marvelwithkontacts.domain.dagger.*
 
 
-
-
 class MyApplication : Application() {
 
 
@@ -16,7 +14,11 @@ class MyApplication : Application() {
     }
 
 
+
     val coolComponent: MyCoolComponent by lazy {
+        // Reference to the application graph that is used across the whole app
+      //  val appComponent = DaggerApplicationComponent.create()
+
         DaggerMyCoolComponent.builder()
             .appModule(AppModule(this)) // This also corresponds to the name of your module: %component_name%Module
             .netModule(NetModule(getString(R.string.marvel_base_url)))

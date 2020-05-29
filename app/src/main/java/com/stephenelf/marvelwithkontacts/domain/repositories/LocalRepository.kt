@@ -1,5 +1,7 @@
 package com.stephenelf.marvelwithkontacts.domain.repositories
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.stephenelf.marvelwithkontacts.data.database.Character
 import com.stephenelf.marvelwithkontacts.data.database.MyDatabase
 import io.reactivex.Completable
@@ -9,7 +11,7 @@ import io.reactivex.schedulers.Schedulers
 
 class LocalRepository(val myDatabase: MyDatabase) {
 
-    fun getAllCharacters(): Maybe<List<Character>> {
+    fun getAllCharacters(): LiveData<List<Character>> {
         return myDatabase.characterDao().getAllCharacters()
     }
 

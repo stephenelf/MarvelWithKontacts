@@ -16,11 +16,15 @@ import android.view.animation.DecelerateInterpolator
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.dynamicanimation.animation.DynamicAnimation
 import androidx.dynamicanimation.animation.SpringAnimation
 import androidx.dynamicanimation.animation.SpringForce
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.observe
+
+
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
@@ -35,13 +39,20 @@ import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
+import javax.inject.Inject
 
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var peopleAdapter: PeopleAdapter;
+    private lateinit var peopleAdapter: PeopleAdapter
 
-    private val contactsViewModel: ContactsViewModel by viewModels()
+    private lateinit var contactsViewModel: ContactsViewModel
+
+    // private val contactsViewModel: ContactsViewModel by viewModels()
+
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
 
     companion object {
         internal var PERMISSIONS_REQUEST_READ_CONTACTS = 1
@@ -52,7 +63,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        MyApplication.INSTANCE.coolComponent.inject(this)
+        (applicationContext as MyApplication).coolComponent.inject(this)
+       // getAppInjector().inject(this)
+      //  contactsViewModel= ViewModelProviders.of(this, viewModelFactory)[ContactsViewModel::class.java]
+        contactsViewModel = ViewModelProviders.of(this,
+            viewModelFactory).get(ContactsViewModel::class.java)
+        Logger.d("viewmodel="+contactsViewModel)
+        Logger.d("factoru="+viewModelFactory)
+
+
         checkPermissions()
         setupView()
         startAnimation()
@@ -70,14 +89,23 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun setupView() {
-        people_view.setLayoutManager(LinearLayoutManager(this, RecyclerView.VERTICAL, false))
+        people_view.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         peopleAdapter = PeopleAdapter()
         people_view.setAdapter(peopleAdapter)
     }
 
     private fun fillData() {
+       // Logger.e("filling data:"+contactsViewModel)
+        contactsViewModel.people.observe(this,onChanged = {
+            Logger.e("on changed")
+            peopleAdapter.setPeopleList(it)
+        })
 
-        contactsViewModel.people.subscribeOn(Schedulers.io())
+
+
+
+/*
+        .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : DisposableSingleObserver<List<People>>() {
                 override fun onSuccess(people: List<People>) {
@@ -88,6 +116,8 @@ class MainActivity : AppCompatActivity() {
                     Log.e("MainActivity", "", e)
                 }
             })
+
+ */
     }
 
     override fun onRequestPermissionsResult(
@@ -149,6 +179,7 @@ class MainActivity : AppCompatActivity() {
         fun setPeopleList(peopleList: List<People>) {
             this.peopleList = peopleList
             notifyDataSetChanged()
+            Logger.e("List="+this.peopleList)
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PeopleViewHolder =
