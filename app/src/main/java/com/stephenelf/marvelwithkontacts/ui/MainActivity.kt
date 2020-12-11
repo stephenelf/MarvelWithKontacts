@@ -22,7 +22,7 @@ import androidx.dynamicanimation.animation.SpringAnimation
 import androidx.dynamicanimation.animation.SpringForce
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import androidx.lifecycle.observe
+
 
 
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -96,12 +96,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun fillData() {
        // Logger.e("filling data:"+contactsViewModel)
-        contactsViewModel.people.observe(this,onChanged = {
+        contactsViewModel.people.observe(this, androidx.lifecycle.Observer {
             Logger.e("on changed")
             peopleAdapter.setPeopleList(it)
         })
-
-
 
 
 /*
